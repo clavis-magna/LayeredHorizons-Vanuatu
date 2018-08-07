@@ -55,7 +55,6 @@ public class readLanguageData : MonoBehaviour
                 GameObject limitsCube = Instantiate(languageBoundsCube, new Vector3(thisXY[0], 0, thisXY[1]), Quaternion.Euler(0, 0, 0));
                 limitsCube.transform.localScale = new Vector3(theWidth, loadedData[i].numberofspeakers/1000+0.01f, theHeight);
             }
-
         }
     }
 }
