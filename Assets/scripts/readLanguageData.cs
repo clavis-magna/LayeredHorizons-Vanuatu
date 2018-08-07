@@ -36,7 +36,7 @@ public class readLanguageData : MonoBehaviour
             {
                 // dome
                 float[] thisXY = helpers.getXYPos(loadedData[i].latitude, loadedData[i].longitude, scaleX, scaleY);
-                GameObject thisDome = Instantiate(languageDome, new Vector3(thisXY[0], 0, thisXY[1]), Quaternion.Euler(90, 0, 0));
+                GameObject thisDome = Instantiate(languageDome, new Vector3(thisXY[0], 0.2f, thisXY[1]), Quaternion.Euler(90, 0, 0));
 
                 // audio
                 if (loadedData[i].audiofile != null)

@@ -7,6 +7,7 @@ public class leapNav : MonoBehaviour {
 
     Controller controller;
     public float normalMoveSpeed = 2;
+    public float riseSpeed = 0.5f;
 
     // Use this for initialization
     void Start () {
@@ -37,9 +38,13 @@ public class leapNav : MonoBehaviour {
                     //print("right index finger extended");
                     transform.position += Camera.main.transform.forward * normalMoveSpeed * Time.deltaTime;
                 }
-                else
+                else if(frame.Hands[0].Fingers[0].IsExtended && extendedFingers == 1)
                 {
-                    //print("not");
+                    transform.position += Camera.main.transform.up * riseSpeed * Time.deltaTime;
+                }
+                else if(extendedFingers == 5)
+                {
+                    transform.position += -Camera.main.transform.up * riseSpeed * Time.deltaTime;
                 }
             }
 
