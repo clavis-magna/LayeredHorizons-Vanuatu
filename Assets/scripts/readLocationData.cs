@@ -45,6 +45,8 @@ public class readLocationData : MonoBehaviour
                     if (loadedData[i].dsg != "PPLC" && loadedData[i].dsg != "PPLA")
                     {
                         GameObject thisCube = Instantiate(dataCube, new Vector3(thisXY[0], 0, thisXY[1]), Quaternion.Euler(90, 0, 0));
+                        TextMesh nameText = thisCube.GetComponentInChildren<TextMesh>();
+                        nameText.text = loadedData[i].fullnamero;
                         lineIndex++;
                     }
                     else

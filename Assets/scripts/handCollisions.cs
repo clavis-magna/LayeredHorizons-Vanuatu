@@ -19,6 +19,7 @@ public class handCollisions : MonoBehaviour {
         print(other.name);
         Material cubeMaterial = this.gameObject.GetComponent<Renderer>().material;
         cubeMaterial.color = new Color(1, 0, 0);
+        this.gameObject.transform.GetChild(0).gameObject.GetComponent<Renderer>().enabled = true;
     }
 
     void OnTriggerExit(Collider other)
@@ -26,5 +27,6 @@ public class handCollisions : MonoBehaviour {
         print(other.name);
         Material cubeMaterial = this.gameObject.GetComponent<Renderer>().material;
         cubeMaterial.color = new Color(1, 1, 1);
+        this.gameObject.transform.GetChild(0).gameObject.GetComponent<Renderer>().enabled = false;
     }
 }
