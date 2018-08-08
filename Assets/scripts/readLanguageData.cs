@@ -10,6 +10,7 @@ public class readLanguageData : MonoBehaviour
     public GameObject languageDome;
     public GameObject languageBoundsCube;
     public GameObject audioIcon;
+    public GameObject ring;
  
     public int scaleX = 1000;
     public int scaleY = 2000;
@@ -45,10 +46,15 @@ public class readLanguageData : MonoBehaviour
                     // audio source
                     AudioSource thesource = thisDome.GetComponent<AudioSource>();
                     thesource.clip = Resources.Load<AudioClip>("languageAudio/" + loadedData[i].audiofile);
+                    thesource.maxDistance = loadedData[i].numberofspeakers / 1000 + 0.01f;
                     thesource.Play();
 
                     // audio icon
                     GameObject thisAudioIcon = Instantiate(audioIcon, new Vector3(thisXY[0], 0.3f, thisXY[1]), Quaternion.Euler(0, 0, 0));
+
+                    // ring visualisation
+                    GameObject ringObject = Instantiate(ring, new Vector3(thisXY[0], 0, thisXY[1]), Quaternion.Euler(-90, 0, 0));
+                    ringObject.transform.localScale = new Vector3(loadedData[i].numberofspeakers / 1000 + 0.01f, loadedData[i].numberofspeakers / 1000 + 0.01f, 0.5f);
                 }
                 else
                 {
@@ -65,17 +71,9 @@ public class readLanguageData : MonoBehaviour
                 GameObject limitsCube = Instantiate(languageBoundsCube, new Vector3(thisXY[0], 0, thisXY[1]), Quaternion.Euler(0, 0, 0));
                 limitsCube.transform.localScale = new Vector3(theWidth, loadedData[i].numberofspeakers/1000+0.01f, theHeight);
 
+
                 // language data
                 TextMesh thisTextMesh = thisDome.transform.GetChild(0).gameObject.GetComponent<TextMesh>();
-                string hasAudio;
-                if (loadedData[i].audiofile != null)
-                {
-                    hasAudio = "has audio";
-                }
-                else
-                {
-                    hasAudio = "no audio";
-                }
                 thisTextMesh.text = "Language Name: "+loadedData[i].name + "\n Country: " + loadedData[i].country + "\n Number of Speakers: " + loadedData[i].numberofspeakers; // + "\n" + hasAudio;  
             }
         }
