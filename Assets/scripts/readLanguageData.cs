@@ -9,6 +9,7 @@ public class readLanguageData : MonoBehaviour
     public string filename = "languageData.json";
     public GameObject languageDome;
     public GameObject languageBoundsCube;
+    public GameObject audioIcon;
  
     public int scaleX = 1000;
     public int scaleY = 2000;
@@ -36,14 +37,23 @@ public class readLanguageData : MonoBehaviour
             {
                 // dome
                 float[] thisXY = helpers.getXYPos(loadedData[i].latitude, loadedData[i].longitude, scaleX, scaleY);
-                GameObject thisDome = Instantiate(languageDome, new Vector3(thisXY[0], 0.2f, thisXY[1]), Quaternion.Euler(90, 0, 0));
+                GameObject thisDome = Instantiate(languageDome, new Vector3(thisXY[0], 0.2f, thisXY[1]), Quaternion.Euler(0, 0, 0));
 
                 // audio
                 if (loadedData[i].audiofile != null)
                 {
+                    // audio source
                     AudioSource thesource = thisDome.GetComponent<AudioSource>();
                     thesource.clip = Resources.Load<AudioClip>("languageAudio/" + loadedData[i].audiofile);
                     thesource.Play();
+
+                    // audio icon
+                    GameObject thisAudioIcon = Instantiate(audioIcon, new Vector3(thisXY[0], 0.3f, thisXY[1]), Quaternion.Euler(0, 0, 0));
+                }
+                else
+                {
+                    AudioSource thesource = thisDome.GetComponent<AudioSource>();
+                    Destroy(thesource);
                 }
                 // limits
                 float[] NWLimits = helpers.getXYPos(loadedData[i].northlimit, loadedData[i].westlimit, scaleX, scaleY);
@@ -54,6 +64,19 @@ public class readLanguageData : MonoBehaviour
 
                 GameObject limitsCube = Instantiate(languageBoundsCube, new Vector3(thisXY[0], 0, thisXY[1]), Quaternion.Euler(0, 0, 0));
                 limitsCube.transform.localScale = new Vector3(theWidth, loadedData[i].numberofspeakers/1000+0.01f, theHeight);
+
+                // language data
+                TextMesh thisTextMesh = thisDome.transform.GetChild(0).gameObject.GetComponent<TextMesh>();
+                string hasAudio;
+                if (loadedData[i].audiofile != null)
+                {
+                    hasAudio = "has audio";
+                }
+                else
+                {
+                    hasAudio = "no audio";
+                }
+                thisTextMesh.text = "Language Name: "+loadedData[i].name + "\n Country: " + loadedData[i].country + "\n Number of Speakers: " + loadedData[i].numberofspeakers; // + "\n" + hasAudio;  
             }
         }
     }

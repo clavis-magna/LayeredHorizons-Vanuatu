@@ -6,7 +6,7 @@ using Leap;
 public class leapNav : MonoBehaviour {
 
     Controller controller;
-    public float normalMoveSpeed = 2;
+    public float normalMoveSpeed = 0.5f;
     public float riseSpeed = 0.5f;
 
     // Use this for initialization
@@ -19,6 +19,17 @@ public class leapNav : MonoBehaviour {
         Frame frame = controller.Frame();
         if (frame.Hands.Count > 0)
         {
+            // palm up or down
+            bool palmUp;
+            if (frame.Hands[0].PalmNormal[0] > -0.5 && frame.Hands[0].PalmNormal[0] < 0.5 && frame.Hands[0].PalmNormal[1] < 0)
+            {
+                palmUp = true;
+            }
+            else
+            {
+                palmUp = false;
+            }
+
             //print(frame.Hands[0]);
             if (frame.Hands[0].IsRight)
             {
@@ -42,24 +53,16 @@ public class leapNav : MonoBehaviour {
                 {
                     transform.position += Camera.main.transform.up * riseSpeed * Time.deltaTime;
                 }
-                else if(extendedFingers == 5)
+                else if(extendedFingers == 5 && palmUp)
                 {
                     transform.position += -Camera.main.transform.up * riseSpeed * Time.deltaTime;
                 }
+                else if (extendedFingers == 5 && !palmUp)
+                {
+                    transform.position += Camera.main.transform.forward * normalMoveSpeed * 5 * Time.deltaTime;
+                }
             }
-
-            //print(frame.Hands[0].PalmNormal);
-            
-                
-            if (frame.Hands[0].PalmNormal[0] > -0.5 && frame.Hands[0].PalmNormal[0] < 0.5 && frame.Hands[0].PalmNormal[1] < 0)
-            {
-                //print("palms up");
-            }
-            else
-            {
-                //print("not");
-            }
-            
+          
         }
     }
 }

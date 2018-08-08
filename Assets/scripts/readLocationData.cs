@@ -42,14 +42,26 @@ public class readLocationData : MonoBehaviour
                 if (loadedData[i].NT == "N")
                 {
                     float[] thisXY = helpers.getXYPos(loadedData[i].lat, loadedData[i].lon, scaleX, scaleY);
-                    if (loadedData[i].dsg != "PPLC" && loadedData[i].dsg != "PPLA")
+
+                    // check no other point exists here as a quick and dirty way of avoiding overlap
+                    // this should be based on a heirachy of location size rating
+
+                    bool somethingInMySpot = false;
+                    if (Physics.CheckSphere(new Vector3(thisXY[0], 0, thisXY[1]), 0.09f))
+                    {
+                        somethingInMySpot = true;
+                        print(somethingInMySpot);
+                    }
+                    
+
+                    if (loadedData[i].dsg != "PPLC" && loadedData[i].dsg != "PPLA" && !somethingInMySpot)
                     {
                         GameObject thisCube = Instantiate(dataCube, new Vector3(thisXY[0], 0, thisXY[1]), Quaternion.Euler(90, 0, 0));
                         TextMesh nameText = thisCube.GetComponentInChildren<TextMesh>();
                         nameText.text = loadedData[i].fullnamero;
                         lineIndex++;
                     }
-                    else
+                    else if(loadedData[i].dsg == "PPLC" || loadedData[i].dsg == "PPLA")
                     {
                         GameObject thisCube = Instantiate(dataCube, new Vector3(thisXY[0], 0, thisXY[1]), Quaternion.Euler(90, 0, 0));
                         Material cubeMaterial = thisCube.GetComponent<Renderer>().material;
