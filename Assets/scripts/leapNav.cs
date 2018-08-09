@@ -59,7 +59,7 @@ public class leapNav : MonoBehaviour {
                 }
                 else if (extendedFingers == 5 && !palmUp)
                 {
-                    transform.position += Camera.main.transform.forward * normalMoveSpeed * 5 * Time.deltaTime;
+                    transform.position += Camera.main.transform.forward * normalMoveSpeed * 4 * Time.deltaTime;
                 }
             }
           

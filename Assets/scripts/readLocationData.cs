@@ -50,7 +50,7 @@ public class readLocationData : MonoBehaviour
                     if (Physics.CheckSphere(new Vector3(thisXY[0], 0, thisXY[1]), 0.09f))
                     {
                         somethingInMySpot = true;
-                        print(somethingInMySpot);
+                        //print(somethingInMySpot);
                     }
                     
 
