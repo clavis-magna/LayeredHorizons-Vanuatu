@@ -14,14 +14,16 @@ public class readLocationData : MonoBehaviour
     // public LineRenderer line1;
 
 
-    public int scaleX = 1000;
-    public int scaleY = 2000;
+    public int scaleX; // = 1000;
+    public int scaleY; // = 2000;
 
     private locationData[] mylocationData;
 
     // Use this for initialization
     void Start()
     {
+        scaleX = (int)commonData.mapScale.x;
+        scaleY = (int)commonData.mapScale.y;
         loadData();
     }
 

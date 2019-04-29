@@ -11,15 +11,17 @@ public class readLanguageData : MonoBehaviour
     public GameObject languageBoundsCube;
     public GameObject audioIcon;
     public GameObject ring;
- 
-    public int scaleX = 1000;
-    public int scaleY = 2000;
+
+    public int scaleX; // = 1000;
+    public int scaleY; // = 2000;
 
     private languageData[] mylanguageData;
 
     // Use this for initialization
     void Start()
     {
+        scaleX = (int)commonData.mapScale.x;
+        scaleY = (int)commonData.mapScale.y;
         loadData();
     }
 

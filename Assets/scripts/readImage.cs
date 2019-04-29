@@ -7,11 +7,13 @@ public class readImage : MonoBehaviour {
     public Texture2D map;
     public GameObject unitCube;
     public GameObject HeightMapParent;
-    public int scaleX = 2000;
-    public int scaleY = 4000;
+    public int scaleX; // = 2000;
+    public int scaleY; // = 4000;
 
     // Use this for initialization
     void Start () {
+        scaleX = (int)commonData.mapScale.x;
+        scaleY = (int)commonData.mapScale.y;
         //print(map.width + "  " + map.height);
         float latCount = -17;
         float longCount = 162;
