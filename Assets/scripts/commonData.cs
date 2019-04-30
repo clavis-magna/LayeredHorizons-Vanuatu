@@ -16,6 +16,7 @@ public class commonData : MonoBehaviour {
     public static AudioSource[] allAudio;
 
     // _mapScale accessable and setable in the inspector
+    [Header("Set overall world scale (in world units)")]
     public Vector2 _mapScale;
 
     // mapScale accessable to all other scripts 
