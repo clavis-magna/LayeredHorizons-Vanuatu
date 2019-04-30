@@ -5,23 +5,34 @@ using System.IO;
 
 public class readLanguageData : MonoBehaviour
 {
-
+    // file name of language json data - must be in streaming assets folder
     public string filename = "languageData.json";
-    public GameObject languageDome;
+
+    // game objects for building environment
+    [Header("GO represents single language location")]
+    public GameObject languageCentroidMarker;
+    [Header("GO represents language bounding box")]
     public GameObject languageBoundsCube;
+    [Header("GO represents language with related audio")]
     public GameObject audioIcon;
+    [Header("GO represents audio bounds in environment")]
     public GameObject ring;
 
-    public int scaleX; // = 1000;
-    public int scaleY; // = 2000;
+    // holders for the map scale set in start method
+    private int scaleX; 
+    private int scaleY;
 
+    // array to read json language data into
     private languageData[] mylanguageData;
 
     // Use this for initialization
     void Start()
     {
+        // grab world scale from the commonData script
+        // set in the inspector
         scaleX = (int)commonData.mapScale.x;
         scaleY = (int)commonData.mapScale.y;
+
         loadData();
     }
 
@@ -35,12 +46,11 @@ public class readLanguageData : MonoBehaviour
             string dataAsJson = File.ReadAllText(dataFilePath);
             languageData[] loadedData = JsonHelper.FromJson<languageData>(dataAsJson);
 
-
             for (int i = 0; i < loadedData.Length; i++)
             {
-                // dome
+                // loanguage location marker
                 float[] thisXY = helpers.getXYPos(loadedData[i].latitude, loadedData[i].longitude, scaleX, scaleY);
-                GameObject thisDome = Instantiate(languageDome, new Vector3(thisXY[0], 0.2f, thisXY[1]), Quaternion.Euler(0, 0, 0));
+                GameObject thisDome = Instantiate(languageCentroidMarker, new Vector3(thisXY[0], 0.2f, thisXY[1]), Quaternion.Euler(0, 0, 0));
 
                 // audio
                 if (loadedData[i].audiofile != null)
@@ -60,10 +70,12 @@ public class readLanguageData : MonoBehaviour
                 }
                 else
                 {
+                    // if no audio destroy the audiosource to save resources
                     AudioSource thesource = thisDome.GetComponent<AudioSource>();
                     Destroy(thesource);
                 }
-                // limits
+
+                // limits / bounding box
                 float[] NWLimits = helpers.getXYPos(loadedData[i].northlimit, loadedData[i].westlimit, scaleX, scaleY);
                 float[] SELimits = helpers.getXYPos(loadedData[i].southlimit, loadedData[i].eastlimit, scaleX, scaleY);
 
