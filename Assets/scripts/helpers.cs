@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class helpers {
+public static class helpers
+{
 
     //
-    // getXYPos (should actually be get XZPos)
+    // getXYPos (should actually be get XZPos
     // todo: maybe refactor with a better method name at some stage
     // see: https://stackoverflow.com/questions/1369512/converting-longitude-latitude-to-x-y-on-a-map-with-calibration-points
     //
@@ -19,10 +20,7 @@ public static class helpers {
         return xy;
     }
 
-    //
-    // helper to remap from one value range to another
-    // like processing's 'map()' see: https://processing.org/reference/map_.html
-    //
+
     public static float Remap(this float value, float from1, float to1, float from2, float to2)
     {
         return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
@@ -61,5 +59,3 @@ public static class JsonHelper
         public T[] Items;
     }
 }
-
-
