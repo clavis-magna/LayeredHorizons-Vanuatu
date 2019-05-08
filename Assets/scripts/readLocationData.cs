@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
+// Ali making an edit :) 
+
 public class readLocationData : MonoBehaviour
 {
     // file name of location json data - must be in streaming assets folder
