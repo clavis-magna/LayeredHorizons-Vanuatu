@@ -94,10 +94,11 @@ public class readLocationData : MonoBehaviour
                     // which are currently the same color
                     else if (loadedData[i].dsg == "PPLC" || loadedData[i].dsg == "PPLA")
                     {
-                        GameObject thisCube = Instantiate(populatedPlaceMarker, new Vector3(thisXY[0], 0, thisXY[1]), Quaternion.Euler(90, 0, 0));
-                        Material cubeMaterial = thisCube.GetComponent<Renderer>().material;
-                        cubeMaterial.color = new Color(1, 0, 0.8666f);
-                        GameObject thisMarker = Instantiate(namedLocationMarker, new Vector3(thisXY[0], 0.1f, thisXY[1]), Quaternion.Euler(-90, 0, 0));
+                        // I don't think we want a cube here, just the populated place marker
+                        //GameObject thisCube = Instantiate(populatedPlaceMarker, new Vector3(thisXY[0], 0, thisXY[1]), Quaternion.Euler(90, 0, 0));
+                        //Material cubeMaterial = thisCube.GetComponent<Renderer>().material;
+                        //cubeMaterial.color = new Color(1, 0, 0.8666f);
+                        GameObject thisMarker = Instantiate(namedLocationMarker, new Vector3(thisXY[0], 0.05f, thisXY[1]), Quaternion.Euler(-90, 0, 0));
                         print(loadedData[i].fullnamero);
                         TextMesh nameText = thisMarker.GetComponentInChildren<TextMesh>();
                         nameText.text = loadedData[i].fullnamero;
