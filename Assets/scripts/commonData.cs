@@ -23,10 +23,19 @@ public class commonData : MonoBehaviour {
     // as a static variable it can only have 1 value across the entire project)
     public static Vector2 mapScale;
 
+    // color that local locations will turn when touched
+    public Color _touchColor;
+
+    // and a static version available to other scripts
+    public static Color touchColor;
+
 	// Use this for initialization
 	void Start () {
-        //set mapScale to the value we have set in the inspector
+        // set mapScale to the value we have set in the inspector
         mapScale = _mapScale;
+
+        // set touchColor to the color we have set in the inspector
+        touchColor = _touchColor;
 
         // Invoke the 'collectAudioSources()' functions after 2 seconds
         Invoke("collectAudioSources", 2);

@@ -1272,6 +1272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mapScale: {x: 2000, y: 4000}
+  _touchColor: {r: 0.43827873, g: 0.5319826, b: 0.6320754, a: 1}
 --- !u!1 &1340289165
 GameObject:
   m_ObjectHideFlags: 0
