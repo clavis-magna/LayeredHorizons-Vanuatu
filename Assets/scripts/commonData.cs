@@ -24,10 +24,14 @@ public class commonData : MonoBehaviour {
     public static Vector2 mapScale;
 
     // color that local locations will turn when touched
+    [Header("color named location blocks turn when touched")]
     public Color _touchColor;
 
     // and a static version available to other scripts
     public static Color touchColor;
+
+    // skycolor
+    public Color skyColor = new Color(0.83f, 0.66f, 1, 1);
 
 	// Use this for initialization
 	void Start () {
@@ -39,6 +43,9 @@ public class commonData : MonoBehaviour {
 
         // Invoke the 'collectAudioSources()' functions after 2 seconds
         Invoke("collectAudioSources", 2);
+
+        // set sky color
+        Camera.main.backgroundColor = skyColor;
     }
 	
 	// Update is called once per frame
