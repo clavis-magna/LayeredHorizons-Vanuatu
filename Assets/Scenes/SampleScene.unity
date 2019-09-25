@@ -1654,6 +1654,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wet: {fileID: 245036135748879158, guid: 135804ae22e237340b82b6a30edd0991, type: 2}
   dry: {fileID: 245879181668147404, guid: 135804ae22e237340b82b6a30edd0991, type: 2}
+  mainLight: {fileID: 170076734}
 --- !u!82 &1798144284
 AudioSource:
   m_ObjectHideFlags: 0
