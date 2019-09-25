@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class handCollisions : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    Color touchColor;
 
+    // Use this for initialization
+	void Start ()
+    {
+        touchColor = commonData.touchColor;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		
 	}
 
@@ -19,7 +23,7 @@ public class handCollisions : MonoBehaviour {
         if (other.name == "index_pointer")
         {
             Material cubeMaterial = this.gameObject.GetComponent<Renderer>().material;
-            cubeMaterial.color = new Color(1, 0, 0);
+            cubeMaterial.color = touchColor;
             this.gameObject.transform.GetChild(0).gameObject.GetComponent<Renderer>().enabled = true;
             LeanTween.scale(this.gameObject.transform.GetChild(0).gameObject, new Vector3(1, 1, 1), 0.5f).setEase(LeanTweenType.easeInOutCirc);
         }

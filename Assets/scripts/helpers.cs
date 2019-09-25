@@ -2,8 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class helpers {
+public static class helpers
+{
 
+    //
+    // getXYPos (should actually be get XZPos
+    // todo: maybe refactor with a better method name at some stage
+    // see: https://stackoverflow.com/questions/1369512/converting-longitude-latitude-to-x-y-on-a-map-with-calibration-points
+    //
     public static float[] getXYPos(float lat, float lon, float scaleX, float scaleY)
     {
         float[] xy = new float[2];
@@ -14,12 +20,17 @@ public static class helpers {
         return xy;
     }
 
+
     public static float Remap(this float value, float from1, float to1, float from2, float to2)
     {
         return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
     }
 }
 
+//
+// JsonHelper class for extending Unity's JsonUtility to work with json with multiple data objects (like we have)
+// see: https://stackoverflow.com/questions/36239705/serialize-and-deserialize-json-and-json-array-in-unity
+// 
 public static class JsonHelper
 {
     public static T[] FromJson<T>(string json)
@@ -48,5 +59,3 @@ public static class JsonHelper
         public T[] Items;
     }
 }
-
-
