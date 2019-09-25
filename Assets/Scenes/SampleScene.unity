@@ -1202,6 +1202,7 @@ GameObject:
   - component: {fileID: 1253292469}
   - component: {fileID: 1253292471}
   - component: {fileID: 1253292472}
+  - component: {fileID: 1253292473}
   m_Layer: 0
   m_Name: code
   m_TagString: Untagged
@@ -1274,6 +1275,22 @@ MonoBehaviour:
   _mapScale: {x: 2000, y: 4000}
   _touchColor: {r: 0.43827873, g: 0.5319826, b: 0.6320754, a: 1}
   skyColor: {r: 0.8313726, g: 0.6627451, b: 1, a: 1}
+--- !u!114 &1253292473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253292468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca23e99fdfb98294f819379070ebe9f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CSVFileName: dog.csv
+  displayWord: 1
+  wordColumnHeader: dog
+  textMarker: {fileID: 1429926124814906, guid: cf205adced467a24dbd2fca7105b42dc, type: 3}
 --- !u!1 &1340289165
 GameObject:
   m_ObjectHideFlags: 0
