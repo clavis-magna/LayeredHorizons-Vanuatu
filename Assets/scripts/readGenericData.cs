@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.Networking;
 
 public class readGenericData : MonoBehaviour
 {
@@ -14,6 +15,12 @@ public class readGenericData : MonoBehaviour
 
     public bool displayWord;
     public string wordColumnHeader;
+
+    public bool hasAudio;
+    public string audioColunmHeader;
+
+    public bool runTest = false;
+
 
     public GameObject textMarker;
 
@@ -51,11 +58,56 @@ public class readGenericData : MonoBehaviour
                 }
             }
         }
+
+        // this is a test for reading in data file in using webrequest from the streaming assets folder
+        if (runTest)
+        {
+            StartCoroutine("getData");
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    IEnumerator getData()
+    {
+        // test for text asset from streaming assets
+        string myFileURI = Path.Combine(Application.streamingAssetsPath, "cat.txt");
+
+        UnityWebRequest www = UnityWebRequest.Get(myFileURI);
+        yield return www.SendWebRequest();
+
+        if (!www.isNetworkError && !www.isHttpError)
+        {
+            // Get text content like this:
+            Debug.Log(www.downloadHandler.text);
+        }
+
+        // test for audio asset from streaming assets
+        string audioFileURI = Path.Combine(Application.streamingAssetsPath, "bird.ogg");
+
+        UnityWebRequest audiowww = UnityWebRequestMultimedia.GetAudioClip(audioFileURI, AudioType.OGGVORBIS);
+        yield return audiowww.SendWebRequest();
+
+        if (!audiowww.isNetworkError && !audiowww.isHttpError)
+        {
+            AudioClip myClip = DownloadHandlerAudioClip.GetContent(audiowww);
+            print("audioFileName --------------" + myClip);
+        }
+
+        // test for image asset from streaming assets
+        string imageFileURI = Path.Combine(Application.streamingAssetsPath, "dog.jpg");
+
+        UnityWebRequest imagewww = UnityWebRequestTexture.GetTexture(imageFileURI);
+        yield return imagewww.SendWebRequest();
+
+        if (!imagewww.isNetworkError && !imagewww.isHttpError)
+        {
+            var texture = DownloadHandlerTexture.GetContent(imagewww);
+            print("image --------------" + texture);
+        }
     }
 }
