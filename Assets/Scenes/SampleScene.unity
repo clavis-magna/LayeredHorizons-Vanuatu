@@ -2595,3 +2595,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalMoveSpeed: 0.5
   riseSpeed: 0.5
+  fastSpeedMultiplier: 3

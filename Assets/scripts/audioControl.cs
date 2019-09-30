@@ -15,6 +15,7 @@ public class audioControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<AudioSource>().Stop();
         dry.TransitionTo(0.2f);
     }
 
