@@ -19,6 +19,8 @@ public class readGenericData : MonoBehaviour
     public bool hasAudio;
     public string audioColunmHeader;
 
+    public GameObject layerParent;
+
     public bool runTest = false;
 
 
@@ -55,6 +57,7 @@ public class readGenericData : MonoBehaviour
                     GameObject thisMarker = Instantiate(textMarker, new Vector3(thisXY[0], 0.05f, thisXY[1]), Quaternion.Euler(-90, 0, 0));
                     TextMesh nameText = thisMarker.GetComponentInChildren<TextMesh>();
                     nameText.text = (string)data[i]["dog"];
+                    thisMarker.transform.parent = layerParent.transform;
                 }
             }
         }
