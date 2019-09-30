@@ -21,7 +21,8 @@ public class reloadOnIdle : MonoBehaviour
     {
         if(notMovedCount > 4)
         {
-            SceneManager.LoadScene(0);
+            print("reloadTry");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
