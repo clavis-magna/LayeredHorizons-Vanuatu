@@ -1203,6 +1203,7 @@ GameObject:
   - component: {fileID: 1253292471}
   - component: {fileID: 1253292472}
   - component: {fileID: 1253292473}
+  - component: {fileID: 1253292474}
   m_Layer: 0
   m_Name: code
   m_TagString: Untagged
@@ -1290,11 +1291,33 @@ MonoBehaviour:
   CSVFileName: dog.csv
   displayWord: 1
   wordColumnHeader: dog
+  textMarker: {fileID: 1429926124814906, guid: cf205adced467a24dbd2fca7105b42dc, type: 3}
   hasAudio: 0
   audioColunmHeader: 
   layerParent: {fileID: 69668341}
   runTest: 0
-  textMarker: {fileID: 1429926124814906, guid: cf205adced467a24dbd2fca7105b42dc, type: 3}
+--- !u!114 &1253292474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253292468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 019ea7f32d0681344b2d8759c92d1179, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CSVFileName: dog.csv
+  displayWord: 1
+  wordColumnHeader: dog
+  fontSize: 1.2
+  yHeight: 0.6
+  textColor: {r: 0, g: 0, b: 0.818, a: 0}
+  hasAudio: 0
+  audioColunmHeader: 
+  layerParent: {fileID: 69668341}
+  runTest: 0
 --- !u!1 &1340289165
 GameObject:
   m_ObjectHideFlags: 0

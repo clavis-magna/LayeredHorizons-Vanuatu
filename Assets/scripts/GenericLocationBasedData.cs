@@ -22,8 +22,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UnityEngine.Networking;
+using TMPro;
 
-public class readGenericData : MonoBehaviour
+public class GenericLocationBasedData : MonoBehaviour
 {
     // list to hold data
     List<Dictionary<string, object>> data;
@@ -34,7 +35,9 @@ public class readGenericData : MonoBehaviour
 
     public bool displayWord;
     public string wordColumnHeader;
-    public GameObject textMarker;
+    public float fontSize = 12;
+    public float yHeight = 5;
+    public Color textColor;
 
     public bool hasAudio;
     public string audioColunmHeader;
@@ -73,15 +76,24 @@ public class readGenericData : MonoBehaviour
                     // using the helper method in the 'helpers' script
                     float[] thisXY = helpers.getXYPos((float)data[i]["latitude"], (float)data[i]["longitude"], scaleX, scaleY);
 
-                    // instantiate the marker game object
-                    // it should be a parent object with a textmesh on a child object
-                    GameObject thisMarker = Instantiate(textMarker, new Vector3(thisXY[0], 0.05f, thisXY[1]), Quaternion.Euler(-90, 0, 0));
-                    TextMesh nameText = thisMarker.GetComponentInChildren<TextMesh>();
-                    nameText.text = (string)data[i]["dog"];
-
-                    // this is just to keep things tidy in the editor
-                    // make this new marker a child of a game object.
-                    thisMarker.transform.parent = layerParent.transform;
+                    // creating from scratch version
+                    // create empty gameobject and name it the text we want to display
+                    GameObject TextObj = new GameObject((string)data[i]["dog"]);
+                    // create a text label as child
+                    GameObject TextLabel = new GameObject("label");
+                    TextMeshPro tmp = TextLabel.AddComponent<TextMeshPro>();
+                    tmp.text = (string)data[i]["dog"];
+                    tmp.fontSize = fontSize;
+                    //tmp.color = textColor;
+                    tmp.alignment = TextAlignmentOptions.Center;
+                    // add lookat script
+                    TextLabel.AddComponent<lookAtCamera>();
+                    TextLabel.transform.parent = TextObj.transform;
+                    TextLabel.transform.localPosition = TextLabel.transform.localPosition + new Vector3(0, yHeight, 0);
+                    // now move the whole things to its correct location
+                    TextObj.transform.position = new Vector3(thisXY[0], 0.05f, thisXY[1]);
+                    TextObj.transform.parent = layerParent.transform;
+                    
                 }
             }
         }
