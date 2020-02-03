@@ -44,7 +44,7 @@ public class showLanguageData : MonoBehaviour {
 
             foreach (AudioSource source in commonData.allAudio)
             {
-                if (this.gameObject.transform.GetComponent<AudioSource>() != null)
+                if (this.gameObject.transform.GetComponent<AudioSource>() != null && source.gameObject.tag != "MainCamera")
                 {
                     source.Play();
                 }

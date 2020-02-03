@@ -8,6 +8,7 @@ public class leapNav : MonoBehaviour {
     Controller controller;
     public float normalMoveSpeed = 0.5f;
     public float riseSpeed = 0.5f;
+    public float fastSpeedMultiplier = 4.0f;
 
     // Use this for initialization
     void Start () {
@@ -59,7 +60,7 @@ public class leapNav : MonoBehaviour {
                 }
                 else if (extendedFingers == 5 && !palmUp)
                 {
-                    transform.position += Camera.main.transform.forward * normalMoveSpeed * 4 * Time.deltaTime;
+                    transform.position += Camera.main.transform.forward * normalMoveSpeed * fastSpeedMultiplier * Time.deltaTime;
                 }
             }
           

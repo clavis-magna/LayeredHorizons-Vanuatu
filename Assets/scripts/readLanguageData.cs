@@ -62,7 +62,7 @@ public class readLanguageData : MonoBehaviour
                     thesource.Play();
 
                     // audio icon
-                    GameObject thisAudioIcon = Instantiate(audioIcon, new Vector3(thisXY[0], 0.3f, thisXY[1]), Quaternion.Euler(0, 0, 0));
+                    GameObject thisAudioIcon = Instantiate(audioIcon, new Vector3(thisXY[0], 0.32f, thisXY[1]), Quaternion.Euler(0, 0, 0));
 
                     // ring visualisation
                     GameObject ringObject = Instantiate(ring, new Vector3(thisXY[0], 0, thisXY[1]), Quaternion.Euler(-90, 0, 0));
